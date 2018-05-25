@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-ENV SENSU_VERSION=1.4.2
+ENV SENSU_VERSION=1.4.2-1
 
 RUN groupadd -r sensu && useradd -r -g sensu sensu \
   && apt-get update && apt-get install -y wget ca-certificates gnupg --no-install-recommends && rm -rf /var/lib/apt/lists/* \
