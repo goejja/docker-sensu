@@ -1,4 +1,4 @@
-FROM: animemint/sensu:1.4.2
+FROM animemint/sensu:1.4.2
 
 EXPOSE 4567
 
