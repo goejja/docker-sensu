@@ -1,11 +1,15 @@
 {
     "api": {
         "host": {{ .API_HOST | quote }},
-        "port": {{ .API_PORT}}
+        "port": {{ .API_PORT }}
+        {{ if and .API_USER .API_PASSWORD }}
+        "user": {{ .API_USER | quote }},
+        "password": {{ .API_PASSWORD | quote }}
+        {{ end }}
     },
     "rabbitmq": {
         "host": {{ .RABBITMQ_HOST | quote }},
-        "port": {{ default .RABBITMQ_PORT .RABBITMQ_PORT_5672_TCP_PORT }},
+        "port": {{ .RABBITMQ_PORT }},
         "user": {{ .RABBITMQ_USER | quote }},
         "password": {{ .RABBITMQ_PASSWORD | quote }},
         "vhost": {{ .RABBITMQ_VHOST | quote }},

@@ -21,6 +21,7 @@ ENV RABBITMQ_HOST=rabbitmq \
     RABBITMQ_VHOST=/ \
     REDIS_HOST=redis \
     REDIS_PORT=6379 \
-    API_HOST=sensu-api
+    API_HOST=sensu-api \
+    API_PORT=4567
 
 RUN chown -R sensu:sensu /etc/sensu
