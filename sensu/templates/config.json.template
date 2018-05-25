@@ -1,0 +1,16 @@
+{
+    "api": {
+        "host": {{ .API_HOST | quote }},
+        "port": {{ .API_PORT}}
+    },
+    "rabbitmq": {
+        "host": {{ .RABBITMQ_HOST | quote }},
+        "port": {{ default .RABBITMQ_PORT .RABBITMQ_PORT_5672_TCP_PORT }},
+        "user": {{ .RABBITMQ_USER | quote }},
+        "password": {{ .RABBITMQ_PASSWORD | quote }},
+        "vhost": {{ .RABBITMQ_VHOST | quote }},
+    },
+    "redis": {
+        "host": {{ .REDIS_HOST | quote }}
+    }
+}
