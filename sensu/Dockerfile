@@ -9,7 +9,7 @@ RUN groupadd -r sensu && useradd -r -g sensu sensu \
   && echo "deb http://sensu.global.ssl.fastly.net/apt stretch main" > /etc/apt/sources.list.d/sensu.list \
   && apt-get update && apt-get install -y --no-install-recommends sensu=${SENSU_VERSION} \
   && rm -rf /var/lib/apt/lists/* \
-  && wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
+  && wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
 COPY templates /etc/sensu/templates
