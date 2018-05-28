@@ -1,0 +1,20 @@
+{
+    "api": {
+        {{ if and .Env.API_USER .Env.API_PASSWORD }}
+        "user": {{ .Env.API_USER }},
+        "password": "{{ .Env.API_PASSWORD }}",
+        {{ end }}
+        "host": "{{ .Env.API_HOST }}",
+        "port": {{ .Env.API_PORT }}
+    },
+    "rabbitmq": {
+        "host": "{{ .Env.RABBITMQ_HOST }}",
+        "port": {{ .Env.RABBITMQ_PORT }},
+        "user": "{{ .Env.RABBITMQ_USER }}",
+        "password": "{{ .Env.RABBITMQ_PASSWORD }}",
+        "vhost": "{{ .Env.RABBITMQ_VHOST }}"
+    },
+    "redis": {
+        "host": "{{ .Env.REDIS_HOST }}"
+    }
+}
