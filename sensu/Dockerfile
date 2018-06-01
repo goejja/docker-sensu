@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 
-ARG SENSU_VERSION=1.4.2-1
+ARG SENSU_VERSION=1.4.2-3
 ARG DOCKERIZE_VERSION=0.6.1
 
 RUN groupadd -r sensu && useradd -r -g sensu sensu \
@@ -10,9 +10,10 @@ RUN groupadd -r sensu && useradd -r -g sensu sensu \
   && apt-get update && apt-get install -y --no-install-recommends sensu=${SENSU_VERSION} \
   && rm -rf /var/lib/apt/lists/* \
   && wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
-  && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
+  && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
+  && rm dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
-COPY templates /etc/sensu/templates
+COPY templates /templates
 
 ENV RABBITMQ_HOST=rabbitmq \
     RABBITMQ_PORT=5672 \
