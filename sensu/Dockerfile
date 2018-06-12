@@ -1,4 +1,4 @@
-FROM centos7 AS sensu
+FROM centos:7 AS sensu
 
 ARG SENSU_VERSION=1.4.2
 ARG DOCKERIZE_VERSION=0.6.1
