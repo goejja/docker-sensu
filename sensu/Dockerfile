@@ -7,12 +7,12 @@ ARG UID=1000
 COPY sensu.repo /etc/yum.repos.d/
 COPY templates /templates
 
-RUN groupadd -g ${UID} sensu && useradd -r -u {UID} -g sensu sensu \
-  && yum -y update && yum -y install sensu-${SENSU_VERSION} \
-  && yum clean all \
-  && wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
-  && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
-  && rm -rf /dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
+RUN groupadd -g ${UID} sensu && useradd -r -u ${UID} -g sensu sensu
+RUN yum -y update && yum -y install sensu-${SENSU_VERSION}
+RUN yum clean all
+RUN wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
+RUN tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
+RUN rm -rf /dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
 ENV RABBITMQ_HOST=rabbitmq \
     RABBITMQ_PORT=5672 \
