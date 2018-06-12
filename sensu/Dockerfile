@@ -8,7 +8,7 @@ COPY sensu.repo /etc/yum.repos.d/
 COPY templates /templates
 
 RUN groupadd -g ${UID} sensu && useradd -r -u ${UID} -g sensu sensu
-RUN yum -y update && yum -y wget install sensu-${SENSU_VERSION}.el7
+RUN yum -y update && yum -y install sensu-${SENSU_VERSION}.el7 wget
 RUN yum clean all
 RUN rm -rf /var/cache/yum
 RUN wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
