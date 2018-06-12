@@ -51,6 +51,8 @@ COPY vmware-sdk/${VSPHERE_SDK_PERL} /tmp/
 RUN yum -y install python perl e2fsprogs-devel libuuid-devel openssl-devel perl-devel \
   glibc.i686 zlib.i686 perl-XML-LibXML libncurses.so.5 perl-Crypt-SSLeay make
 RUN tar -xzvf /tmp/${VSPHERE_SDK_PERL}
+RUN ls -la /tmp/
+RUN ls -la /tmp/vmware-vsphere-cli-distrib/
 RUN sed -i '2621,2635d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
 RUN /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes
 RUN yum clean all
