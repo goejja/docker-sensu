@@ -1,4 +1,8 @@
 {
+    "transport": {
+      "name": {{ .Env.TRANSPORT_NAME }},
+      "reconnect_on_error": true
+    },
     "api": {
         {{ if and .Env.API_USER .Env.API_PASSWORD }}
         "user": {{ .Env.API_USER }},

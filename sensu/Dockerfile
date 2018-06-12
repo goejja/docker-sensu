@@ -11,7 +11,7 @@ RUN groupadd -r sensu && useradd -r -g sensu sensu \
   && rm -rf /var/lib/apt/lists/* \
   && wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
-  && rm dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
+  && rm -rf /dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
 
 COPY templates /templates
 
@@ -23,6 +23,7 @@ ENV RABBITMQ_HOST=rabbitmq \
     REDIS_HOST=redis \
     REDIS_PORT=6379 \
     API_HOST=sensu-api \
-    API_PORT=4567
+    API_PORT=4567 \
+    TRANSPORT_NAME=rabbitmq
 
 RUN chown -R sensu:sensu /etc/sensu
