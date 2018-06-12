@@ -42,10 +42,11 @@ CMD dockerize -template /templates/config.json.tmpl:/etc/sensu/config.json \
     /opt/sensu/bin/sensu-api -c /etc/sensu/config.json -d /etc/sensu/conf.d
 
 FROM sensu AS sensu-client
+USER root
 
 ARG VSPHERE_SDK_PERL=VMware-vSphere-Perl-SDK-6.5.0-4566394.x86_64.tar.gz
 
-COPY vmware-sdk/${VSPHERE_SDK_PERL} /tmp
+COPY vmware-sdk/${VSPHERE_SDK_PERL} /tmp/
 
 RUN yum -y install python perl e2fsprogs-devel libuuid-devel openssl-devel perl-devel \
   glibc.i686 zlib.i686 perl-XML-LibXML libncurses.so.5 perl-Crypt-SSLeay make
