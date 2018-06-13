@@ -12,7 +12,8 @@ This build will provides 3 differents containers:
 It is planned to run on docker swarm.
 
 ## Note
-Initial build was based on debian-slim, but we want to monitor VMware so image is now based on centos.
+Initial build was based on debian-slim, but supported platform for VMware SDK are only RHEL, Ubuntu and SUSE.
+So the containers are now based from CentOS 7.
 Images are bigger but are now compliant with the supported platforms of VMware SDK.
 
 ## VMware SDK
