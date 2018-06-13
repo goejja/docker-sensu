@@ -54,16 +54,15 @@ RUN yum -y -d1 install python perl e2fsprogs e2fsprogs-devel libuuid-devel opens
   perl-Module-Build perl-ExtUtils-MakeMaker perl-LWP-Protocol-https perl-JSON \
   uuid-perl perl-Crypt-OpenSSL-RSA perl-Try-Tiny perl-CPAN
 RUN tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL}
-RUN sed -i 's/|| direct_command("cat \/proc\/version | grep -i ubuntu") //g' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
-RUN sed -i 's/print wrap("please restart the installer. \\n\\n", 0);/print wrap("please restart the installer. \\n\\n", 0); exit 0;/' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
-RUN sed -i '2621,2635d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
-RUN sed -i '2230,2237d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
-RUN /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes
-RUN /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes
+#RUN sed -i 's/|| direct_command("cat \/proc\/version | grep -i ubuntu") //g' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
+#RUN sed -i '2621,2635d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
+#RUN sed -i '2230,2237d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
+#RUN /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes
+#RUN /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes
 RUN yum clean all
 RUN rm -rf /var/cache/yum
-RUN rm -fr /tmp/vmware-vsphere-cli-distrib
-RUN rm -fr /tmp/VMware-*
+#RUN rm -fr /tmp/vmware-vsphere-cli-distrib
+#RUN rm -fr /tmp/VMware-*
 
 USER sensu
 CMD dockerize -template /templates/config.json.tmpl:/etc/sensu/config.json \
