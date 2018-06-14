@@ -21,5 +21,4 @@ But it provides smaller footprint than CentOS dockers.
 ## VMware SDK
 The sensu client includes:
 * [VMware vSphere Automation SDK for Perl 6.5](https://github.com/vmware/vsphere-automation-sdk-perl)
-* [vmware vSphere Automation SDK for Go 6.5](https://github.com/vmware/govmomi)
 * [VMware vSphere Automation  SDK for Python 6.5](https://github.com/vmware/pyvmomi)
