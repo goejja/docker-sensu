@@ -7,7 +7,7 @@ ARG UID=1000
 COPY templates /templates
 
 RUN groupadd -g ${UID} sensu && useradd -r -u ${UID} -g sensu sensu \
-  && apt-get update && apt-get install -yq --no-install-recommends wget ca-certificates gnupg \
+  && apt-get -q update && apt-get install -yq --no-install-recommends wget ca-certificates gnupg curl \
   && curl -s https://sensu.global.ssl.fastly.net/apt/pubkey.gpg | apt-key add - \
   && echo "deb https://sensu.global.ssl.fastly.net/apt stretch main" > /etc/apt/sources.list.d/sensu.list \
   && apt-get install -yq  sensu=${SENSU_VERSION} \
