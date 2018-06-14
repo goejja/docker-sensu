@@ -9,7 +9,7 @@ COPY templates /templates
 RUN groupadd -g ${UID} sensu && useradd -r -u ${UID} -g sensu sensu \
   && apt-get -qq update && apt-get install -yqq --no-install-recommends wget ca-certificates gnupg curl \
   && wget -q https://sensu.global.ssl.fastly.net/apt/pubkey.gpg && apt-key add pubkey.gpg \
-  && echo "deb https://sensu.global.ssl.fastly.net/apt stretch main" > /etc/apt/sources.list.d/sensu.list \
+  && echo "deb http://sensu.global.ssl.fastly.net/apt stretch main" > /etc/apt/sources.list.d/sensu.list \
   && apt-get -qq update && apt-get install -yq --no-install-recommends sensu=${SENSU_VERSION} \
   && wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
