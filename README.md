@@ -11,10 +11,11 @@ This build will provides 3 differents containers:
 * sensu-client
 It is planned to run on docker swarm.
 
+We are using sensu to monitor VMware vSphere, so sensu-client includes some VMware SDK used by our scripts.
+
 ## Note
-Initial build was based on debian-slim, but supported platform for VMware SDK are only RHEL, Ubuntu and SUSE.
-So the containers are now based from CentOS 7.
-Images are bigger but are now compliant with the supported platforms of VMware SDK.
+Build is based on debian-slim. Debian is not part of supported platform for VMware SDK for Perl.
+But it provides smaller footprint than CentOS dockers.
 
 ## VMware SDK
 The sensu client includes:

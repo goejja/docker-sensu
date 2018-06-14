@@ -1,15 +1,17 @@
-FROM centos:7 AS sensu
+FROM debian:stretch-slim AS sensu
 
 ARG SENSU_VERSION=1.4.2-3
 ARG DOCKERIZE_VERSION=0.6.1
 ARG UID=1000
 
-COPY sensu.repo /etc/yum.repos.d/
 COPY templates /templates
 
 RUN groupadd -g ${UID} sensu && useradd -r -u ${UID} -g sensu sensu \
-  && yum -y -d1 update && yum -y -d1 install sensu-${SENSU_VERSION}.el7 wget \
-  && yum clean all && rm -rf /var/cache/yum \
+  && apt-get update && apt-get install -yq --no-install-recommends wget ca-certificates gnupg \
+  && curl -s https://sensu.global.ssl.fastly.net/apt/pubkey.gpg | apt-key add - \
+  && echo "deb https://sensu.global.ssl.fastly.net/apt stretch main" > /etc/apt/sources.list.d/sensu.list &&\
+  && apt-get install -yq  sensu=${SENSU_VERSION} \
+  && apt-get clean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* /var/tmp/* \
   && wget https://github.com/jwilder/dockerize/releases/download/v${DOCKERIZE_VERSION}/dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
   && tar -C /usr/local/bin -xzf dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz \
   && rm -rf /dockerize-linux-amd64-v${DOCKERIZE_VERSION}.tar.gz
