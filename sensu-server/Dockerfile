@@ -1,4 +1,4 @@
-FROM animemint/sensu-testing
+FROM animemint/sensu
 
 USER sensu
 CMD dockerize -template /templates/config.json.tmpl:/etc/sensu/config.json \
