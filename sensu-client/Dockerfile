@@ -1,6 +1,6 @@
 FROM animemint/sensu-testing AS sensu-base
 
-ARG VSPHERE_SDK_PERL=VMware-vSphere-Perl-SDK-6.5.0-4566394.x86_64.tar.gz
+ARG VSPHERE_SDK_PERL=VMware-vSphere-Perl-SDK-6.7.0-8156551.x86_64.tar.gz
 
 COPY vmware-sdk/${VSPHERE_SDK_PERL} /tmp/
 
@@ -13,7 +13,7 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends python perl
   libexception-class-perl libarchive-zip-perl libdevel-checklib-perl \
   libclass-methodmaker-perl libdata-dump-perl libcrypt-x509-perl \
   liblist-moreutils-perl uuid-dev libossp-uuid-perl libsoap-lite-perl \
-  libdata-uuid-libuuid-perl
+  libdata-uuid-libuuid-perl libjson-perl librest-client-perl libjson-perl
 RUN cpanm --installdeps Path::Class Data::UUID::MT UUID::Random
 RUN pip install --upgrade pyvmomi
 RUN echo "Ubuntu" > /etc/fake-release \
