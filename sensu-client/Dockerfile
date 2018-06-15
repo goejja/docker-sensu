@@ -18,7 +18,7 @@ RUN cpanm --installdeps Path::Class Data::UUID::MT UUID::Random
 RUN pip install --upgrade pyvmomi
 RUN echo "Ubuntu" > /etc/fake-release \
   && tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL} \
-  && sed -i '2621,2635d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
+  && sed -i '2581,2695d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
 RUN /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes \
   && rm -fr /tmp/vmware-vsphere-cli-distrib && rm -fr /tmp/VMware-* \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/* \
