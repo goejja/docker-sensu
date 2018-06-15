@@ -6,8 +6,15 @@ COPY vmware-sdk/${VSPHERE_SDK_PERL} /tmp/
 
 RUN apt-get -q update && apt-get install -yq --no-install-recommends python perl wget \
   python-pip kmod  e2fsprogs perl-doc libxml2 libssl-dev libcrypt-ssleay-perl \
-  libxml-libxml-perl iputils-ping cpanminus \
-  libextutils-makemaker-cpanfile-perl libmodule-build-perl liblwp-protocol-https-perl
+  libxml-libxml-perl iputils-ping cpanminus make gcc \
+  libextutils-makemaker-cpanfile-perl libmodule-build-perl liblwp-protocol-https-perl \
+  libtry-tiny-perl libdevel-stacktrace-perl libclass-data-inheritable-perl \
+  libconvert-asn1-perl libcrypt-openssl-rsa-perl libcrypt-openssl-x509-perl \
+  libexception-class-perl libarchive-zip-perl libdevel-checklib-perl \
+  libclass-methodmaker-perl libdata-dump-perl libcrypt-x509-perl \
+  liblist-moreutils-perl uuid-dev libossp-uuid-perl libsoap-lite-perl \
+  libdata-uuid-libuuid-perl
+RUN cpanm --installdeps Path::Class Data::UUID::MT UUID::Random
 RUN pip install --upgrade pyvmomi
 RUN echo "Ubuntu" > /etc/fake-release \
   && tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL} \
