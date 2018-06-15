@@ -11,11 +11,11 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends python perl
   libtry-tiny-perl libdevel-stacktrace-perl libclass-data-inheritable-perl \
   libconvert-asn1-perl libcrypt-openssl-rsa-perl libcrypt-openssl-x509-perl \
   libexception-class-perl libarchive-zip-perl libdevel-checklib-perl \
-  libclass-methodmaker-perl libdata-dump-perl libcrypt-x509-perl \
+  libclass-methodmaker-perl libdata-dump-perl libcrypt-x509-perl librest-client-perl \
   liblist-moreutils-perl uuid-dev libossp-uuid-perl libsoap-lite-perl \
-  libdata-uuid-libuuid-perl libjson-perl librest-client-perl libjson-perl
-RUN cpanm --installdeps Path::Class Data::UUID::MT UUID::Random
-RUN pip install --upgrade pyvmomi
+  libdata-uuid-libuuid-perl libjson-perl librest-client-perl libjson-perl \
+  && cpanm --installdeps Path::Class Data::UUID::MT UUID::Random JSON::Parse \
+  && pip install --upgrade pyvmomi
 RUN echo "Ubuntu" > /etc/fake-release \
   && tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL} \
   && sed -i '2581,2595d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl
