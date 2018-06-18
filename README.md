@@ -16,7 +16,9 @@ The client is used to monitor VMware vSphere, so it includes some VMware SDK use
 
 ## Note
 Build is based on debian-slim. Debian is not part of supported platform for VMware SDK for Perl.
-But it provides smaller footprint than CentOS dockers.
+But it provides smaller footprint than CentOS containers.
+
+The containers runs Sensu as user sensu using uid:gid 1000:1000. Bind mounted host directories and files need to be accessible by this user.
 
 ## VMware SDK
 The sensu client includes:
