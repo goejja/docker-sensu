@@ -24,7 +24,7 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends python perl
   && /tmp/vmware-vsphere-cli-distrib/vmware-install.pl -d EULA_AGREED=yes \
   && rm -fr /tmp/vmware-vsphere-cli-distrib && rm -fr /tmp/VMware-* \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/* \
-  && cpanm --installdeps JSON::Parse \
+  && cpanm --installdeps JSON::Parse
 
 
 FROM sensu-client-base
