@@ -14,7 +14,10 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends python perl
   libclass-methodmaker-perl libdata-dump-perl libcrypt-x509-perl librest-client-perl \
   liblist-moreutils-perl uuid-dev libossp-uuid-perl libsoap-lite-perl \
   libdata-uuid-libuuid-perl libjson-perl librest-client-perl libjson-perl \
-  && cpanm --installdeps Path::Class Data::UUID::MT UUID::Random JSON::Parse \
+  && cpanm --installdeps Path::Class \
+  && cpanm --installdeps Data::UUID::MT \
+  && cpanm --installdeps UUID::Random \
+  && cpanm --installdeps JSON::Parse \
   && pip install --upgrade pyvmomi \
   && echo "Ubuntu" > /etc/fake-release \
   && tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL} \
