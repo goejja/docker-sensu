@@ -16,9 +16,11 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends python perl
   libdata-uuid-libuuid-perl libjson-perl librest-client-perl libjson-perl
 RUN perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(prerequisites_policy => "follow"); $c->edit(build_requires_install_policy => "yes"); $c->commit'
 RUN cpan install Path::Class \
-  && cpan install Data::UUID::MT \
-  && cpan install UUID::Random \
-  && pip install --upgrade pyvmomi \
+  && cpan install Math::Random::MT::Auto \
+  && cpan install Object::InsideOut
+#  && cpan install Data::UUID::MT \
+#  && cpan install UUID::Random
+RUN pip install --upgrade pyvmomi \
   && echo "Ubuntu" > /etc/fake-release \
   && tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL} \
   && sed -i '2581,2595d' /tmp/vmware-vsphere-cli-distrib/vmware-install.pl \
