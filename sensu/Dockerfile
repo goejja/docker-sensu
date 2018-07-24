@@ -2,11 +2,12 @@ FROM debian:stretch-slim AS sensu
 
 ARG SENSU_VERSION=1.4.2-4
 ARG DOCKERIZE_VERSION=0.6.1
-ARG UID=1000
+ARG UID=995
+ARG GUID=992
 
 COPY templates /templates
 
-RUN groupadd -g ${UID} sensu && useradd -r -u ${UID} -g sensu sensu \
+RUN groupadd -g ${GUID} sensu && useradd -r -u ${UID} -g sensu sensu \
   && apt-get -qq update && apt-get install -yqq --no-install-recommends wget ca-certificates gnupg \
   && wget -q https://sensu.global.ssl.fastly.net/apt/pubkey.gpg && apt-key add pubkey.gpg \
   && echo "deb http://sensu.global.ssl.fastly.net/apt stretch main" > /etc/apt/sources.list.d/sensu.list \
