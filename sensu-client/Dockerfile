@@ -16,8 +16,9 @@ RUN apt-get -q update && apt-get install -yq --no-install-recommends python3 per
   libdata-uuid-libuuid-perl libjson-perl librest-client-perl libjson-perl \
   && perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(prerequisites_policy => "follow"); $c->edit(build_requires_install_policy => "yes"); $c->commit' \
   && cpan install Path::Class \
-  && cpan install Math::Random::MT::Auto \
   && cpan install Object::InsideOut \
+  && pip3 install --upgrade setuptools \
+  && pip3 install --upgrade wheel \
   && pip3 install --upgrade pyvmomi \
   && echo "Ubuntu" > /etc/fake-release \
   && tar -C /tmp -xzf /tmp/${VSPHERE_SDK_PERL} \
