@@ -19,6 +19,7 @@
         "vhost": "{{ .Env.RABBITMQ_VHOST }}"
     },
     "redis": {
-        "host": "{{ .Env.REDIS_HOST }}"
+        "host": "{{ .Env.REDIS_HOST }}",
+        "port": {{ .Env.REDIS_PORT }}
     }
 }
